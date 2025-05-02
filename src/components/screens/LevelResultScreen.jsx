@@ -1,9 +1,12 @@
 import React from 'react';
-import { Container, Card, ListGroup, Button } from 'react-bootstrap';
+// import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { Container, Card, ListGroup, Button } from 'react-bootstrap';
 
 function LevelResultScreen() {
   const navigate = useNavigate();
+  // const [levelScore, setLevelScore] = useState(0);
+  // const [timeTaken, setTimeTaken] = useState('00:00');
 
   const handleNextLevel = () => {
     navigate('/quiz', { state: { level: 'next' } });
@@ -26,7 +29,9 @@ function LevelResultScreen() {
           <ListGroup.Item className="bg-transparent ">
             Wrong Answers:{' '}
           </ListGroup.Item>
-          <ListGroup.Item className="bg-transparent ">Score: </ListGroup.Item>
+          <ListGroup.Item className="bg-transparent ">
+            Level Score: %
+          </ListGroup.Item>
           <ListGroup.Item className="bg-transparent ">
             Time Taken:{' '}
           </ListGroup.Item>
