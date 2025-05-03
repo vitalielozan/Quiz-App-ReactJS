@@ -1,16 +1,21 @@
-import React from 'react';
-// import { useState } from 'react';
+import { useQuiz } from './useQuiz';
 import { useNavigate } from 'react-router';
 import { Container, Card, ListGroup, Button } from 'react-bootstrap';
 
 function ResultScreen() {
   const navigate = useNavigate();
+  const { scores, times } = useQuiz();
+
+  const totalCorrect = scores.easy + scores.medium + scores.difficult;
+  const totalWrong = 30 - totalCorrect;
+  const totalScore = Math.round((totalCorrect / 30) * 100);
+
+  const totalTime = times.easy + times.medium + times.difficult;
+  const timeInSeconds = Math.floor(totalTime / 1000);
+
   const handleRestart = () => {
     navigate('/');
   };
-
-  // const [totalScore, setTotalScore] = useState(0);
-  // const [totalTimeTaken, setTotalTimeTaken] = useState('00:00');
 
   return (
     <Container fluid>
@@ -20,16 +25,16 @@ function ResultScreen() {
         </Card.Header>
         <ListGroup variant="flush" className="fs-5">
           <ListGroup.Item className="bg-transparent ">
-            Correct Answers:{' '}
+            Correct Answers:{totalCorrect}
           </ListGroup.Item>
           <ListGroup.Item className="bg-transparent ">
-            Wrong Answers:{' '}
+            Wrong Answers:{totalWrong}
           </ListGroup.Item>
           <ListGroup.Item className="bg-transparent ">
-            Total Score: %
+            Total Score: {totalScore}%
           </ListGroup.Item>
           <ListGroup.Item className="bg-transparent ">
-            Total Time Taken:{' '}
+            Total Time Taken:{timeInSeconds} sec
           </ListGroup.Item>
         </ListGroup>
         <div className="d-flex justify-content-around pb-3 mt-3">

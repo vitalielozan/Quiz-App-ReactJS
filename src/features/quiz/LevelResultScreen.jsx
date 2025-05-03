@@ -1,15 +1,28 @@
-import React from 'react';
-// import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Container, Card, ListGroup, Button } from 'react-bootstrap';
+import { useQuiz } from './useQuiz';
 
 function LevelResultScreen() {
   const navigate = useNavigate();
-  // const [levelScore, setLevelScore] = useState(0);
-  // const [timeTaken, setTimeTaken] = useState('00:00');
+  const location = useLocation();
+  const { scores, times } = useQuiz();
+
+  const level = location.state?.level || 'easy';
+  const score = scores[level];
+  const time = times[level];
+
+  const correctAnswer = score;
+  const wrongAnswer = 10 - score;
+  const timeInSeconds = Math.floor(time / 1000);
 
   const handleNextLevel = () => {
-    navigate('/quiz', { state: { level: 'next' } });
+    const nextLevel =
+      level === 'easy' ? 'medium' : level === 'medium' ? 'difficult' : null;
+    if (nextLevel) {
+      navigate('/quiz', { state: { level: nextLevel } });
+    } else {
+      navigate('/final-result');
+    }
   };
 
   const handleRestart = () => {
@@ -20,20 +33,20 @@ function LevelResultScreen() {
     <Container fluid>
       <Card style={{ width: '28rem' }} className="bg-transparent mx-auto mt-5">
         <Card.Header className="fs-2 fw-medium text-center">
-          Level Result
+          Level Result - {level.toUpperCase()}
         </Card.Header>
         <ListGroup variant="flush" className="fs-5">
           <ListGroup.Item className="bg-transparent ">
-            Correct Answers:{' '}
+            Correct Answers:{correctAnswer}
           </ListGroup.Item>
           <ListGroup.Item className="bg-transparent ">
-            Wrong Answers:{' '}
+            Wrong Answers:{wrongAnswer}
           </ListGroup.Item>
           <ListGroup.Item className="bg-transparent ">
-            Level Score: %
+            Level Score: {score * 10}%
           </ListGroup.Item>
           <ListGroup.Item className="bg-transparent ">
-            Time Taken:{' '}
+            Time Taken:{timeInSeconds} sec
           </ListGroup.Item>
         </ListGroup>
         <div className="d-flex justify-content-around pb-3 mt-3">

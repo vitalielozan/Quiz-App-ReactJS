@@ -2,13 +2,17 @@ import React from 'react';
 import { useState } from 'react';
 import { Container, Button, Card, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useQuiz } from '../quiz/useQuiz';
 
 function StartScreen() {
   const navigate = useNavigate();
   const [selectedLevel, setSelectedLevel] = useState('');
+  const { resetQuiz, setStartTime } = useQuiz();
 
   const handleStartQuiz = () => {
-    navigate('/quiz', { state: { level: selectedLevel } });
+    resetQuiz();
+    setStartTime(Date.now());
+    navigate('/quiz', { state: { level: selectedLevel.toLocaleLowerCase() } });
   };
 
   return (
