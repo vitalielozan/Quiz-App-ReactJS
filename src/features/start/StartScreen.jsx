@@ -5,7 +5,7 @@ import { useQuiz } from '../quiz/useQuiz';
 
 function StartScreen() {
   const navigate = useNavigate();
-  const [selectedLevel, setSelectedLevel] = useState('');
+  const [selectedLevel, setSelectedLevel] = useState('easy');
   const { resetQuiz, setStartTime } = useQuiz();
 
   const handleStartQuiz = () => {

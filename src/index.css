@@ -24,11 +24,3 @@ h2 {
 p {
   margin: 15px auto;
 }
-
-.corect {
-  background-color: #28a745 !important;
-}
-
-.wrong {
-  background-color: #dc3545 !important;
-}
