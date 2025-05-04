@@ -39,16 +39,16 @@ function LevelResultScreen() {
         </Card.Header>
         <ListGroup variant="flush" className="fs-5">
           <ListGroup.Item className="bg-transparent ">
-            Correct Answers:{correctAnswer}
+            ✅ Correct Answers:{correctAnswer}
           </ListGroup.Item>
           <ListGroup.Item className="bg-transparent ">
-            Wrong Answers:{wrongAnswer}
+            ❌ Wrong Answers:{wrongAnswer}
           </ListGroup.Item>
           <ListGroup.Item className="bg-transparent ">
-            Level Score: {score * 10}%
+            🧠 Level Score: {score * 10}%
           </ListGroup.Item>
           <ListGroup.Item className="bg-transparent ">
-            Time Taken:{timeInSeconds} sec
+            ⏱️ Time Taken:{timeInSeconds} sec
           </ListGroup.Item>
         </ListGroup>
         <div className="d-flex justify-content-around pb-3 mt-3">

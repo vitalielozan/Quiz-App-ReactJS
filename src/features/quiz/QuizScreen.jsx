@@ -94,7 +94,10 @@ function QuizScreen() {
         {selectedAnswer && (
           <div className="mt-3">
             {selectedAnswer === correctAnswer ? (
-              <p className="text-success fw-bold">✔ Correct!</p>
+              <div>
+                <p className="text-success fw-bold">✔ Correct!</p>
+                <p>{currentQuestion.explanation}</p>
+              </div>
             ) : (
               <p className="text-danger fw-bold">
                 ✘ Wrong! correct answer was: <strong>{correctAnswer}</strong>
