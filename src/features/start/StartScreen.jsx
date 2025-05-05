@@ -5,7 +5,7 @@ import { useQuiz } from '../quiz/useQuiz';
 
 function StartScreen() {
   const navigate = useNavigate();
-  const [selectedLevel, setSelectedLevel] = useState('easy');
+  const [selectedLevel, setSelectedLevel] = useState('');
   const { resetQuiz, setStartTime } = useQuiz();
 
   const handleStartQuiz = () => {
@@ -29,6 +29,9 @@ function StartScreen() {
               value={selectedLevel}
               onChange={(e) => setSelectedLevel(e.target.value)}
             >
+              <option value="" disabled>
+                --Choose difficulty--
+              </option>
               <option>Easy</option>
               <option>Medium</option>
               <option>Difficult</option>
