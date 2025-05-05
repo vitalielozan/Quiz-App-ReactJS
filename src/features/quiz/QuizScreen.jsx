@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { getQuestionsByLevel } from './API';
 import { useQuiz } from './useQuiz';
 import { Container, Card, Button, Spinner } from 'react-bootstrap';
+import DigitalClock from './DigitalClock';
 
 function QuizScreen() {
   const location = useLocation();
@@ -75,47 +76,50 @@ function QuizScreen() {
   const currentQuestion = questions[currentIndex];
 
   return (
-    <Container className="mt-5">
-      <Card className="mx-auto p-4" style={{ maxWidth: '600px' }}>
-        <Card.Title className="fs-3 mb-4">
-          {currentQuestion.question}
-        </Card.Title>
-        {currentQuestion.answers.map((ans, idx) => (
-          <Button
-            key={idx}
-            variant={getButtonVariant(ans.text)}
-            className="d-block w-100 my-2"
-            onClick={() => handleAnswer(ans.text)}
-          >
-            {ans.text}
-          </Button>
-        ))}
-
-        {selectedAnswer && (
-          <div className="mt-3">
-            {selectedAnswer === correctAnswer ? (
-              <div>
-                <p className="text-success fw-bold">✔ Correct!</p>
-                <p>{currentQuestion.explanation}</p>
-              </div>
-            ) : (
-              <p className="text-danger fw-bold">
-                ✘ Wrong! correct answer was: <strong>{correctAnswer}</strong>
-              </p>
-            )}
-            <Button className="mt-3" onClick={handleNext}>
-              {currentIndex < questions.length - 1
-                ? 'Next questions'
-                : 'See result'}
+    <>
+      <Container className="mt-5">
+        <Card className="mx-auto p-4" style={{ maxWidth: '600px' }}>
+          <Card.Title className="fs-3 mb-4">
+            {currentQuestion.question}
+          </Card.Title>
+          {currentQuestion.answers.map((ans, idx) => (
+            <Button
+              key={idx}
+              variant={getButtonVariant(ans.text)}
+              className="d-block w-100 my-2"
+              onClick={() => handleAnswer(ans.text)}
+            >
+              {ans.text}
             </Button>
-          </div>
-        )}
+          ))}
 
-        <p className="text-muted mt-3">
-          Questions {currentIndex + 1} from {questions.length}
-        </p>
-      </Card>
-    </Container>
+          {selectedAnswer && (
+            <div className="mt-3">
+              {selectedAnswer === correctAnswer ? (
+                <div>
+                  <p className="text-success fw-bold">✔ Correct!</p>
+                  <p>{currentQuestion.explanation}</p>
+                </div>
+              ) : (
+                <p className="text-danger fw-bold">
+                  ✘ Wrong! correct answer was: <strong>{correctAnswer}</strong>
+                </p>
+              )}
+              <Button className="mt-3" onClick={handleNext}>
+                {currentIndex < questions.length - 1
+                  ? 'Next questions'
+                  : 'See result'}
+              </Button>
+            </div>
+          )}
+
+          <p className="text-muted mt-3">
+            Questions {currentIndex + 1} from {questions.length}
+          </p>
+        </Card>
+      </Container>
+      <DigitalClock />
+    </>
   );
 }
 
