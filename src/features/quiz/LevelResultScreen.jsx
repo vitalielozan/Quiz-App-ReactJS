@@ -7,7 +7,6 @@ function LevelResultScreen() {
   const { scores, times } = useQuiz();
   const [searchParams] = useSearchParams();
   const levelParam = searchParams.get('level')?.toLowerCase() || 'easy';
-  console.log('LevelParam:', levelParam);
   const score = scores[levelParam];
   const time = times[levelParam];
 

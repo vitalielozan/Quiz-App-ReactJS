@@ -10,7 +10,6 @@ function QuizScreen() {
   const navigate = useNavigate();
   const { updateScore, updateTime } = useQuiz();
   const levelParam = searchParams.get('level')?.toLowerCase() || 'easy';
-  console.log('LevelParam:', levelParam);
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
