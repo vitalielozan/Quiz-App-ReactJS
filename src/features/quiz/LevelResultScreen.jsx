@@ -1,31 +1,32 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Container, Card, ListGroup, Button } from 'react-bootstrap';
 import { useQuiz } from './useQuiz';
 
 function LevelResultScreen() {
   const navigate = useNavigate();
-  const location = useLocation();
   const { scores, times } = useQuiz();
-
-  const level = location.state?.level || 'easy';
-  const score = scores[level];
-  const time = times[level];
+  const [searchParams] = useSearchParams();
+  const levelParam = searchParams.get('level')?.toLowerCase() || 'easy';
+  console.log('LevelParam:', levelParam);
+  const score = scores[levelParam];
+  const time = times[levelParam];
 
   const correctAnswer = score;
   const wrongAnswer = 10 - score;
   const timeInSeconds = Math.floor(time / 1000);
 
+  const levelOrder = ['easy', 'medium', 'difficult'];
   const handleNextLevel = () => {
-    const nextLevel =
-      level === 'easy' ? 'medium' : level === 'medium' ? 'difficult' : null;
+    const currentIndex = levelOrder.indexOf(levelParam);
+    const nextLevel = levelOrder[currentIndex + 1];
     if (nextLevel) {
-      navigate('/quiz', { state: { level: nextLevel } });
+      navigate(`/quiz?level=${nextLevel}`);
     } else {
       navigate('/final-result');
     }
   };
 
-  const isLastLevel = level === 'difficult';
+  const isLastLevel = levelParam === 'difficult';
 
   const handleRestart = () => {
     navigate('/');
@@ -35,7 +36,7 @@ function LevelResultScreen() {
     <Container fluid>
       <Card style={{ width: '28rem' }} className="bg-transparent mx-auto mt-5">
         <Card.Header className="fs-2 fw-medium text-center">
-          Level Result - {level.toUpperCase()}
+          📌 Level Result - {levelParam.toUpperCase()}
         </Card.Header>
         <ListGroup variant="flush" className="fs-5">
           <ListGroup.Item className="bg-transparent ">

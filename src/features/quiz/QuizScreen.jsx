@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getQuestionsByLevel } from './API';
 import { useQuiz } from './useQuiz';
 import { Container, Card, Button, Spinner } from 'react-bootstrap';
 import DigitalClock from './DigitalClock';
 
 function QuizScreen() {
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { updateScore, updateTime } = useQuiz();
-
-  const level = location.state?.level || 'easy';
+  const levelParam = searchParams.get('level')?.toLowerCase() || 'easy';
+  console.log('LevelParam:', levelParam);
   const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
@@ -21,13 +21,15 @@ function QuizScreen() {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const data = await getQuestionsByLevel(level);
-      setQuestions(data);
-      setStartLevelTime(Date.now());
-      setLoading(false);
+      const data = await getQuestionsByLevel(levelParam);
+      setTimeout(() => {
+        setQuestions(data);
+        setLoading(false);
+        setStartLevelTime(Date.now());
+      }, 1000);
     };
     fetchQuestions();
-  }, [level]);
+  }, [levelParam]);
 
   const handleAnswer = (selected) => {
     if (selectedAnswer) return;
@@ -51,9 +53,9 @@ function QuizScreen() {
       const endTime = Date.now();
       const timeSent = endTime - startLevelTime;
 
-      updateScore(level, correctCount);
-      updateTime(level, timeSent);
-      navigate('/level-result', { state: { level } });
+      updateScore(levelParam, correctCount);
+      updateTime(levelParam, timeSent);
+      navigate(`/level-result?level=${levelParam}`);
     }
   };
 

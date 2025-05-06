@@ -11,7 +11,7 @@ function StartScreen() {
   const handleStartQuiz = () => {
     resetQuiz();
     setStartTime(Date.now());
-    navigate('/quiz', { state: { level: selectedLevel.toLocaleLowerCase() } });
+    navigate(`/quiz?level=${selectedLevel}`);
   };
 
   return (

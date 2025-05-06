@@ -5,7 +5,6 @@ import { Container, Card, ListGroup, Button } from 'react-bootstrap';
 function ResultScreen() {
   const navigate = useNavigate();
   const { scores, times } = useQuiz();
-  const levels = ['easy', 'medium', 'difficult'];
 
   const totalCorrect = scores.easy + scores.medium + scores.difficult;
   const totalWrong = 30 - totalCorrect;
@@ -38,24 +37,6 @@ function ResultScreen() {
             ⏱️ Total Time Taken:{timeInSeconds} sec
           </ListGroup.Item>
         </ListGroup>
-
-        <Card.Body>
-          <Card.Title className="text-center mt-3">📌 Level Result:</Card.Title>
-          <ListGroup variant="flush" className="fs-6">
-            {levels.map((level) => {
-              const correct = scores[level];
-              const wrong = 10 - correct;
-              const time = Math.floor(times[level] / 1000);
-              return (
-                <ListGroup.Item key={level} className="bg-light">
-                  <strong>{level.toUpperCase()}:</strong> {correct} correct,{' '}
-                  {wrong} wrong, {time} sec
-                </ListGroup.Item>
-              );
-            })}
-          </ListGroup>
-        </Card.Body>
-
         <div className="d-flex justify-content-around pb-3 mt-3">
           <Button variant="primary" onClick={handleRestart}>
             🔁 Restart Quiz
