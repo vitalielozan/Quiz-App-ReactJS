@@ -1,12 +1,13 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Container, Card, ListGroup, Button } from 'react-bootstrap';
-import { useQuiz } from './useQuiz';
+import { useQuizContext } from '../../utils/hooks/useQuizContext';
+import { levels } from '../../constants/constant';
 
 function LevelResultScreen() {
   const navigate = useNavigate();
-  const { scores, times } = useQuiz();
+  const { scores, times } = useQuizContext();
   const [searchParams] = useSearchParams();
-  const levelParam = searchParams.get('level')?.toLowerCase() || 'easy';
+  const levelParam = searchParams.get('level')?.toLowerCase() || levels.easy;
   const score = scores[levelParam];
   const time = times[levelParam];
 
@@ -29,7 +30,7 @@ function LevelResultScreen() {
     navigate(`/quiz?level=${levelParam}`);
   };
 
-  const isLastLevel = levelParam === 'difficult';
+  const isLastLevel = levelParam === levels.difficult;
   const handleRestart = () => {
     navigate('/');
   };

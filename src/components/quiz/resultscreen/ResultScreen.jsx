@@ -1,14 +1,15 @@
-import { useQuiz } from './useQuiz';
+import { useQuizContext } from '../../utils/hooks/useQuizContext';
 import { useNavigate } from 'react-router';
 import { Container, Card, ListGroup, Button } from 'react-bootstrap';
+import { totalQuestions } from '../../constants/constant';
 
 function ResultScreen() {
   const navigate = useNavigate();
-  const { scores, times } = useQuiz();
+  const { scores, times } = useQuizContext();
 
   const totalCorrect = scores.easy + scores.medium + scores.difficult;
-  const totalWrong = 30 - totalCorrect;
-  const totalScore = Math.round((totalCorrect / 30) * 100);
+  const totalWrong = totalQuestions - totalCorrect;
+  const totalScore = Math.round((totalCorrect / totalQuestions) * 100);
 
   const totalTime = times.easy + times.medium + times.difficult;
   const timeInSeconds = Math.floor(totalTime / 1000);

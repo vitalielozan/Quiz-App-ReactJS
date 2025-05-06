@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Container, Button, Card, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useQuiz } from '../quiz/useQuiz';
+import { useQuizContext } from '../../utils/hooks/useQuizContext';
 
 function StartScreen() {
   const navigate = useNavigate();
   const [selectedLevel, setSelectedLevel] = useState('');
-  const { resetQuiz, setStartTime } = useQuiz();
+  const { resetQuiz, setStartTime } = useQuizContext();
 
   const handleStartQuiz = () => {
     resetQuiz();

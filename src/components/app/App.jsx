@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
-import StartScreen from './start/StartScreen';
-import QuizScreen from './quiz/QuizScreen';
-import ResultScreen from './quiz/ResultScreen';
-import LevelResultScreen from './quiz/LevelResultScreen';
-import ErrorPage from './ErrorPage';
+import StartScreen from '../quiz/start/StartScreen';
+import QuizScreen from '../quiz/quizscreen/QuizScreen';
+import ResultScreen from '../quiz/resultscreen/ResultScreen';
+import LevelResultScreen from '../quiz/resultscreen/LevelResultScreen';
+import ErrorPage from '../pages/ErrorPage';
 
 function App() {
   return (
