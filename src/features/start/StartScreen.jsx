@@ -37,7 +37,11 @@ function StartScreen() {
               <option>Difficult</option>
             </Form.Select>
           </Form.Group>
-          <Button variant="primary" className="mt-5" onClick={handleStartQuiz}>
+          <Button
+            variant="primary"
+            className="custom-margin-top"
+            onClick={handleStartQuiz}
+          >
             Start Quiz
           </Button>
         </Card.Body>

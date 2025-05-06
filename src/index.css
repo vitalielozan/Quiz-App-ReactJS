@@ -24,3 +24,6 @@ h2 {
 p {
   margin: 15px auto;
 }
+.custom-margin-top {
+  margin-top: 80px;
+}

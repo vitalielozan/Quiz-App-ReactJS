@@ -26,8 +26,11 @@ function LevelResultScreen() {
     }
   };
 
-  const isLastLevel = levelParam === 'difficult';
+  const handleRestartLevel = () => {
+    navigate(`/quiz?level=${levelParam}`);
+  };
 
+  const isLastLevel = levelParam === 'difficult';
   const handleRestart = () => {
     navigate('/');
   };
@@ -55,6 +58,9 @@ function LevelResultScreen() {
         <div className="d-flex justify-content-around pb-3 mt-3">
           <Button variant="primary" onClick={handleNextLevel}>
             {isLastLevel ? 'Final Result' : 'Next Level'}
+          </Button>
+          <Button variant="primary" onClick={handleRestartLevel}>
+            Restart Level
           </Button>
           <Button variant="primary" onClick={handleRestart}>
             Restart Quiz
