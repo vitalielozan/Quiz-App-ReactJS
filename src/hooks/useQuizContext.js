@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { QuizContext } from '../context/context';
+import { QuizContext } from '../context/context.js';
 
 export const useQuizContext = () => {
   const context = useContext(QuizContext);

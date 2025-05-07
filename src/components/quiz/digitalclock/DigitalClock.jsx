@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './DigitalClock.css';
+import { formatTime } from '../../../utils/functions';
 
 function DigitalClock() {
   const [time, setTime] = useState(0);
@@ -13,12 +14,6 @@ function DigitalClock() {
       clearInterval(intervalId);
     };
   }, []);
-
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-  };
 
   return (
     <div className="clock-container">
