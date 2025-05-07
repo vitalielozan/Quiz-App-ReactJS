@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { API_URL } from '../constants/constant';
 
-const BASE_URL = 'https://my-json-server-five.vercel.app';
+const BASE_URL = API_URL;
 
 export const getQuestionsByLevel = async (level) => {
   try {
