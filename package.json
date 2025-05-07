@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start-server": "json-server --watch questions.json --port 3001",
+    "start-server": "json-server --watch src/data/questions.json --port 3001",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

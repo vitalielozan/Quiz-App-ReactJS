@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Container, Card, ListGroup, Button } from 'react-bootstrap';
-import { useQuizContext } from '../../utils/hooks/useQuizContext';
-import { levels } from '../../constants/constant';
+import { useQuizContext } from '../../../hooks/useQuizContext';
+import { levels } from '../../../constants/constant';
 
 function LevelResultScreen() {
   const navigate = useNavigate();

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { getQuestionsByLevel } from '../../utils/API.js';
-import { useQuizContext } from '../../utils/hooks/useQuizContext.js';
+import { getQuestionsByLevel } from '../../../utils/API.js';
+import { useQuizContext } from '../../../hooks/useQuizContext.js';
 import { Container, Card, Button, Spinner } from 'react-bootstrap';
 import DigitalClock from '../digitalclock/DigitalClock.jsx';
-import { levels } from '../../constants/constant.js';
+import { levels } from '../../../constants/constant.js';
 
 function QuizScreen() {
   const [searchParams] = useSearchParams();

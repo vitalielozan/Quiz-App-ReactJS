@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Button, Card, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useQuizContext } from '../../utils/hooks/useQuizContext';
+import { useQuizContext } from '../../hooks/useQuizContext';
 
 function StartScreen() {
   const navigate = useNavigate();
