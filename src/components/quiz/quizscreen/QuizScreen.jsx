@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getQuestionsByLevel } from '../../../utils/API.js';
 import { useQuizContext } from '../../../hooks/useQuizContext.js';
-import { Container, Card, Button, Spinner } from 'react-bootstrap';
+import { Container, Card, Button, Spinner, Row, Col } from 'react-bootstrap';
 import DigitalClock from '../digitalclock/DigitalClock.jsx';
 import { levels } from '../../../constants/constant.js';
 
@@ -79,46 +79,54 @@ function QuizScreen() {
 
   return (
     <>
-      <Container className="mt-5">
-        <Card className="mx-auto p-4" style={{ maxWidth: '600px' }}>
-          <Card.Title className="fs-3 mb-4">
-            {currentQuestion.question}
-          </Card.Title>
-          {currentQuestion.answers.map((ans, idx) => (
-            <Button
-              key={idx}
-              variant={getButtonVariant(ans.text)}
-              className="d-block w-100 my-2"
-              onClick={() => handleAnswer(ans.text)}
-            >
-              {ans.text}
-            </Button>
-          ))}
+      <Container
+        fluid
+        className="d-flex justify-content-center align-items-start min-vh-100 mt-5"
+      >
+        <Row className="justify-content-center">
+          <Col className="mx-auto">
+            <Card className="mx-auto p-4 shadow-sm border-0">
+              <Card.Title className="fs-3 mb-4">
+                {currentQuestion.question}
+              </Card.Title>
+              {currentQuestion.answers.map((ans, idx) => (
+                <Button
+                  key={idx}
+                  variant={getButtonVariant(ans.text)}
+                  className="d-block w-100 my-2"
+                  onClick={() => handleAnswer(ans.text)}
+                >
+                  {ans.text}
+                </Button>
+              ))}
 
-          {selectedAnswer && (
-            <div className="mt-3">
-              {selectedAnswer === correctAnswer ? (
-                <div>
-                  <p className="text-success fw-bold">✔ Correct!</p>
-                  <p>{currentQuestion.explanation}</p>
+              {selectedAnswer && (
+                <div className="mt-3">
+                  {selectedAnswer === correctAnswer ? (
+                    <div>
+                      <p className="text-success fw-bold">✔ Correct!</p>
+                      <p>{currentQuestion.explanation}</p>
+                    </div>
+                  ) : (
+                    <p className="text-danger fw-bold">
+                      ✘ Wrong! correct answer was:{' '}
+                      <strong>{correctAnswer}</strong>
+                    </p>
+                  )}
+                  <Button className="mt-3" onClick={handleNext}>
+                    {currentIndex < questions.length - 1
+                      ? 'Next questions'
+                      : 'See result'}
+                  </Button>
                 </div>
-              ) : (
-                <p className="text-danger fw-bold">
-                  ✘ Wrong! correct answer was: <strong>{correctAnswer}</strong>
-                </p>
               )}
-              <Button className="mt-3" onClick={handleNext}>
-                {currentIndex < questions.length - 1
-                  ? 'Next questions'
-                  : 'See result'}
-              </Button>
-            </div>
-          )}
 
-          <p className="text-muted mt-3">
-            Questions {currentIndex + 1} from {questions.length}
-          </p>
-        </Card>
+              <p className="text-muted mt-3">
+                Questions {currentIndex + 1} from {questions.length}
+              </p>
+            </Card>
+          </Col>
+        </Row>
       </Container>
       <DigitalClock />
     </>
