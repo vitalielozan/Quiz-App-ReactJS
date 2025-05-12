@@ -1,35 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { getQuestionsByLevel } from '../../../utils/API.js';
-import { useQuizContext } from '../../../hooks/useQuizContext.js';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Card, Button, Spinner, Row, Col } from 'react-bootstrap';
-import DigitalClock from '../digitalclock/DigitalClock.jsx';
-import { levels } from '../../../constants/constant.js';
+import { useQuizScreen } from '../../hooks/useQuizScreen.js';
+import { useQuizContext } from '../../hooks/useQuizContext.js';
+import DigitalClock from './DigitalClock.jsx';
 
 function QuizScreen() {
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { updateScore, updateTime } = useQuizContext();
-  const levelParam = searchParams.get('level')?.toLowerCase() || levels.easy;
-  const [questions, setQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
-  const [startLevelTime, setStartLevelTime] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [correctAnswer, setCorrectAnswer] = useState(null);
-
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      const data = await getQuestionsByLevel(levelParam);
-      setTimeout(() => {
-        setQuestions(data);
-        setLoading(false);
-        setStartLevelTime(Date.now());
-      }, 1000);
-    };
-    fetchQuestions();
-  }, [levelParam]);
+  const { updateScore, updateTime } = useQuizContext();
+  const { questions, loading, startLevelTime, levelParam } = useQuizScreen();
 
   const handleAnswer = (selected) => {
     if (selectedAnswer) return;
@@ -105,7 +88,9 @@ function QuizScreen() {
                   {selectedAnswer === correctAnswer ? (
                     <div>
                       <p className="text-success fw-bold">✔ Correct!</p>
-                      <p>{currentQuestion.explanation}</p>
+                      <p className="text-center">
+                        {currentQuestion.explanation}
+                      </p>
                     </div>
                   ) : (
                     <p className="text-danger fw-bold">

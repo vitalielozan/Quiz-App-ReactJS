@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 
-import StartScreen from '../components/start/StartScreen';
-import QuizScreen from '../components/quiz/quizscreen/QuizScreen';
-import ResultScreen from '../components/quiz/resultscreen/ResultScreen';
-import LevelResultScreen from '../components/quiz/resultscreen/LevelResultScreen';
+import StartScreen from '../components/quiz/StartScreen';
+import QuizScreen from '../components/quiz/QuizScreen';
+import ResultScreen from '../components/quiz/ResultScreen';
+import LevelResultScreen from '../components/quiz/LevelResultScreen';
 import ErrorPage from '../pages/ErrorPage';
 
 function App() {
