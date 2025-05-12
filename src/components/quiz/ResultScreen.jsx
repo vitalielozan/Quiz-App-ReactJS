@@ -1,7 +1,7 @@
 import { useQuizContext } from '../../hooks/useQuizContext';
 import { useNavigate } from 'react-router';
 import { Container, Card, ListGroup, Button } from 'react-bootstrap';
-import { totalQuestions } from '../../constants/index.js';
+import { totalQuestions } from '../../constants/constant.js';
 
 function ResultScreen() {
   const navigate = useNavigate();

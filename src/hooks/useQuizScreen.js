@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getQuestionsByLevel } from '../utils/axiosAPI.js';
-import { levels } from '../constants/index.js';
+import { levels } from '../constants/constant.js';
 
 export const useQuizScreen = () => {
   const [searchParams] = useSearchParams();
