@@ -2,6 +2,8 @@ import { useQuizContext } from '../../hooks/useQuizContext';
 import { useNavigate } from 'react-router';
 import { Container, Card, ListGroup, Button } from 'react-bootstrap';
 import { totalQuestions } from '../../constants/constant.js';
+import { GiLaurelsTrophy } from 'react-icons/gi';
+import { FaCheckCircle, FaTimesCircle, FaClock, FaMedal } from 'react-icons/fa';
 
 function ResultScreen() {
   const navigate = useNavigate();
@@ -20,27 +22,27 @@ function ResultScreen() {
 
   return (
     <Container fluid>
-      <Card style={{ width: '28rem' }} className="bg-transparent mx-auto mt-5">
-        <Card.Header className="fs-2 fw-medium text-center">
-          🎉 Congratulations! You've finished the quiz!
+      <Card style={{ width: '28rem' }} className='bg-transparent mx-auto mt-5'>
+        <Card.Header className='fs-2 fw-medium text-center'>
+          <GiLaurelsTrophy /> Congratulations! You've finished the quiz!
         </Card.Header>
-        <ListGroup variant="flush" className="fs-5">
-          <ListGroup.Item className="bg-transparent ">
-            ✅ Correct Answers:{totalCorrect}
+        <ListGroup variant='flush' className='fs-5'>
+          <ListGroup.Item className='bg-transparent '>
+            <FaCheckCircle /> Correct Answers:{totalCorrect}
           </ListGroup.Item>
-          <ListGroup.Item className="bg-transparent ">
-            ❌ Wrong Answers:{totalWrong}
+          <ListGroup.Item className='bg-transparent '>
+            <FaTimesCircle /> Wrong Answers:{totalWrong}
           </ListGroup.Item>
-          <ListGroup.Item className="bg-transparent ">
-            🧠 Total Score: {totalScore}%
+          <ListGroup.Item className='bg-transparent '>
+            <FaMedal /> Total Score: {totalScore}%
           </ListGroup.Item>
-          <ListGroup.Item className="bg-transparent ">
-            ⏱️ Total Time Taken:{timeInSeconds} sec
+          <ListGroup.Item className='bg-transparent '>
+            <FaClock /> Total Time Taken:{timeInSeconds} sec
           </ListGroup.Item>
         </ListGroup>
-        <div className="d-flex justify-content-around pb-3 mt-3">
-          <Button variant="primary" onClick={handleRestart}>
-            🔁 Restart Quiz
+        <div className='d-flex justify-content-around pb-3 mt-3'>
+          <Button variant='primary' onClick={handleRestart}>
+            Restart Quiz
           </Button>
         </div>
       </Card>
