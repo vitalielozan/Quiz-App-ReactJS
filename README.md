@@ -17,7 +17,6 @@
 ```bash
 npm install
 npm run dev
-npx json-server --watch src/data/questions.json --port 3001
 ```
 
 ## Expanding the ESLint configuration
