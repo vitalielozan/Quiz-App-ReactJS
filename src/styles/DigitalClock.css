@@ -1,6 +1,7 @@
 .clock-container {
   backdrop-filter: blur(5px);
-  width: 100vw;
+  max-width: 100vw;
+  margin-top: 15px;
 }
 .clock {
   font-size: 3rem;
