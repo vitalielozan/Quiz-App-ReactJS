@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getQuestionsByLevel } from '../utils/axiosAPI.js';
 import { levels } from '../constants/constant.js';
+import { shuffle } from '../functions/FisherYates.js';
 
 export const useQuizScreen = () => {
   const [searchParams] = useSearchParams();
@@ -14,11 +15,15 @@ export const useQuizScreen = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       const data = await getQuestionsByLevel(levelParam);
+      const shuffledQuestions = shuffle(data).map((q) => ({
+        ...q,
+        answers: shuffle(q.answers),
+      }));
       setTimeout(() => {
-        setQuestions(data);
+        setQuestions(shuffledQuestions);
         setLoading(false);
         setStartLevelTime(Date.now());
-      }, 1000);
+      }, 500);
     };
     fetchQuestions();
   }, [levelParam]);
