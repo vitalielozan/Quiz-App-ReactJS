@@ -1,7 +1,7 @@
-import { useQuizContext } from '../../hooks/useQuizContext';
+import { useQuizContext } from '@/hooks/useQuizContext';
 import { useNavigate } from 'react-router';
 import { Container, Card, ListGroup, Button } from 'react-bootstrap';
-import { totalQuestions } from '../../constants/constant.js';
+import { totalQuestions } from '@/constants/constant.js';
 import { GiLaurelsTrophy } from 'react-icons/gi';
 import { FaCheckCircle, FaTimesCircle, FaClock, FaMedal } from 'react-icons/fa';
 

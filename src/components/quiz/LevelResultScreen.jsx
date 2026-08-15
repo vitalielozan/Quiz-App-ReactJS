@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Container, Card, ListGroup, Button } from 'react-bootstrap';
-import { useQuizContext } from '../../hooks/useQuizContext';
-import { levels } from '../../constants/constant.js';
+import { useQuizContext } from '@/hooks/useQuizContext';
+import { levels } from '@/constants/constant.js';
 
 import {
   FcEngineering,

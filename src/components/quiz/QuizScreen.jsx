@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Card, Button, Spinner, Row, Col } from 'react-bootstrap';
-import { useQuizScreen } from '../../hooks/useQuizScreen.js';
-import { useQuizContext } from '../../hooks/useQuizContext.js';
+import { useQuizScreen } from '@/hooks/useQuizScreen.js';
+import { useQuizContext } from '@/hooks/useQuizContext.js';
 import DigitalClock from './DigitalClock.jsx';
 
 function QuizScreen() {
@@ -44,7 +44,7 @@ function QuizScreen() {
 
   const getButtonVariant = (answerText) => {
     if (!selectedAnswer) return 'outline-primary';
-    if (answerText === correctAnswer) return 'succes';
+    if (answerText === correctAnswer) return 'success';
     if (answerText === selectedAnswer) return 'danger';
     return 'outline-secondary';
   };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/DigitalClock.css';
-import { formatTime } from '../../functions/formatTime.js';
+import '@/styles/DigitalClock.css';
+import { formatTime } from '@/functions/formatTime.js';
 
 function DigitalClock() {
   const [time, setTime] = useState(0);

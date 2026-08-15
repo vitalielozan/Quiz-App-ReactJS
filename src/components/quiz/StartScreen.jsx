@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Button, Card, Form, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useQuizContext } from '../../hooks/useQuizContext';
+import { useQuizContext } from '@/hooks/useQuizContext';
 
 function StartScreen() {
   const navigate = useNavigate();
@@ -17,23 +17,23 @@ function StartScreen() {
   return (
     <Container
       fluid
-      className="d-flex justify-content-center align-items-start min-vh-100"
+      className='d-flex justify-content-center align-items-start min-vh-100'
     >
-      <Row className="w-100">
-        <Col className="mx-auto">
-          <Card className="text-center bg-transparent shadow-sm border-0">
+      <Row className='w-100'>
+        <Col className='mx-auto'>
+          <Card className='text-center bg-transparent shadow-sm border-0'>
             <Card.Body>
-              <Card.Title className="fs-1 my-3">
+              <Card.Title className='fs-1 my-3'>
                 Geography Science Quiz.
               </Card.Title>
-              <Card.Text className="my-3">Are you ready ?</Card.Text>
-              <Form.Group controlId="formBasicSelect" className="my-3">
+              <Card.Text className='my-3'>Are you ready ?</Card.Text>
+              <Form.Group controlId='formBasicSelect' className='my-3'>
                 <Form.Select
-                  className="mb-5"
+                  className='mb-5'
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
                 >
-                  <option value="" disabled>
+                  <option value='' disabled>
                     --Choose difficulty--
                   </option>
                   <option>Easy</option>
@@ -42,8 +42,8 @@ function StartScreen() {
                 </Form.Select>
               </Form.Group>
               <Button
-                variant="primary"
-                className="custom-margin-top"
+                variant='primary'
+                className='custom-margin-top'
                 onClick={handleStartQuiz}
               >
                 Start Quiz
